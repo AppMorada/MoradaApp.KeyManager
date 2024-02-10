@@ -34,20 +34,20 @@ jobs:
       - name: Google auth
         uses: google-github-actions/auth@v1
         id: gcp-auth
-        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         with:
           credentials_json: '${{ secrets.GOOGLE_APP_CREDENTIALS_BASE64 }}'
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         id: set-gcloud
-        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         with:
            project_id: '${{ secrets.GOOGLE_PROJECT_ID }}'
 
       - name: Deploy cloud create key function
         id: deploy-create-key-func
-        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         run: |
           gcloud functions deploy CreateKeyFunc \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
@@ -60,7 +60,7 @@ jobs:
 
       - name: Deploy cloud update key function
         id: deploy-update-key-func
-        if: steps.changes.outputs.updatefunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        if: steps.path-filter.outputs.updatefunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         run: |
           gcloud functions deploy UpdateKeyFunc \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
