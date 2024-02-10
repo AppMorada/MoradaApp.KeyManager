@@ -1,0 +1,72 @@
+name: CD - Deploy CreateKeyFunc function
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+        - ".github/workflows/deploy-functions.yml"
+        - "functions/createKeyFunc/**"
+        - "functions/updateKeyFunc/**"
+        - "functions/lib/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        id: git-clone
+        name: Cloning repository
+
+      - uses: dorny/paths-filter@v3
+        id: path-filter
+        with:
+          base: ${{ github.ref }}
+          filters: |
+            workflow:
+              - ".github/workflows/deploy-functions.yml"
+            createfunc:
+              - "functions/createKeyFunc/**"
+            updatefunc:
+              - "functions/updateKeyFunc/**"
+            lib:
+              - "functions/lib/**"
+
+      - name: Google auth
+        uses: google-github-actions/auth@v1
+        id: gcp-auth
+        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APP_CREDENTIALS_BASE64 }}'
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        id: set-gcloud
+        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        with:
+           project_id: '${{ secrets.GOOGLE_PROJECT_ID }}'
+
+      - name: Deploy cloud create key function
+        id: deploy-create-key-func
+        if: steps.changes.outputs.createfunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        run: |
+          gcloud functions deploy CreateKeyFunc \
+            --project ${{ secrets.GOOGLE_PROJECT_ID }} \
+            --no-allow-unauthenticated \
+            --region=${{ secrets.REGION }} \
+            --trigger-http \
+            --runtime=${{ secrets.RUNTIME }} \
+            --update-labels=module=signatures \
+            --source=.
+
+      - name: Deploy cloud update key function
+        id: deploy-update-key-func
+        if: steps.changes.outputs.updatefunc == 'true' || steps.changes.outputs.lib == 'true' || steps.changes.workflow == 'true'
+        run: |
+          gcloud functions deploy UpdateKeyFunc \
+            --project ${{ secrets.GOOGLE_PROJECT_ID }} \
+            --no-allow-unauthenticated \
+            --region=${{ secrets.REGION }} \
+            --trigger-http \
+            --runtime=${{ secrets.RUNTIME }} \
+            --update-labels=module=signatures \
+            --source=.
