@@ -2,6 +2,8 @@ name: CI - Unit & E2E Tests
 
 on:
   push:
+    paths:
+        - "functions/**"
     branches:
       - "develop"
       - "feature/**"
