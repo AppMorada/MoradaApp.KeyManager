@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
+        - ".github/workflows/deploy-createkeyfunc.yml"
         - "functions/createKeyFunc/**"
         - "functions/lib/**"
 
