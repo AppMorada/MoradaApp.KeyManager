@@ -31,7 +31,7 @@ BUILD_CMD="sh -c ./tools/build_watch.sh"
 FIRESTORE_CMD="sh -c ./tools/firestore.sh"
 
 CREATE_KEY_FN_CMD="npm-watch functions:createkeyfunc"
-UPDATE_KEY_FN_CMD="npm-watch functions:updatekeytriggerfunc"
+UPDATE_KEY_FN_CMD="npm-watch functions:updatekeyfunc"
 DELETE_KEY_FN_CMD="npm-watch functions:deletekeyfunc"
 
 pnpm dotenv -e .env -- \

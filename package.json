@@ -9,7 +9,7 @@
     "lint": "eslint \"{functions,tests}/**/*.ts\"",
     "functions:createkeyfunc": "sh -c \"./tools/functions.sh CreateKeyFunc 8411 9231\"",
     "functions:deletekeyfunc": "sh -c \"./tools/functions.sh DeleteKeyFunc 8412 9230\"",
-    "functions:updatekeytriggerfunc": "sh -c \"./tools/functions.sh UpdateKeyTriggerFunc 8413 9229\"",
+    "functions:updatekeyfunc": "sh -c \"./tools/functions.sh UpdateKeyFunc 8413 9229\"",
     "lint:fix": "eslint --fix",
     "format": "prettier --write",
     "set-hooks": "husky install",
@@ -34,7 +34,7 @@
       "delay": 1500,
       "extensions": "js"
     },
-    "functions:updatekeytriggerfunc": {
+    "functions:updatekeyfunc": {
       "quiet": true,
       "patterns": [
         "dist"
