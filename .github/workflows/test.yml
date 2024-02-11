@@ -14,19 +14,6 @@ on:
       - "support/**"
       - "dependabot/**"
       - "!main"
-  pull_request:
-    paths:
-        - ".github/workflows/**"
-        - "functions/**"
-    branches:
-      - "develop"
-      - "feature/**"
-      - "bugfix/**"
-      - "release/**"
-      - "hotfix/**"
-      - "support/**"
-      - "dependabot/**"
-      - "!main"
 
 jobs:
   unit-test:
