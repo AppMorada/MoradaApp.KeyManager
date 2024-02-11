@@ -1,4 +1,4 @@
-name: CD - Deploy CreateKeyFunc function
+name: CD - Deploy functions
 
 on:
   push:
@@ -34,20 +34,21 @@ jobs:
       - name: Google auth
         uses: google-github-actions/auth@v1
         id: gcp-auth
-        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         with:
           credentials_json: '${{ secrets.GOOGLE_APP_CREDENTIALS_BASE64 }}'
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         id: set-gcloud
-        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
         with:
            project_id: '${{ secrets.GOOGLE_PROJECT_ID }}'
 
       - name: Deploy cloud create key function
         id: deploy-create-key-func
-        if: steps.path-filter.outputs.createfunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
+        if: |
+          steps.path-filter.outputs.createfunc == 'true' || 
+          steps.path-filter.outputs.lib == 'true' || 
+          steps.path-filter.outputs.workflow == 'true'
         run: |
           gcloud functions deploy CreateKeyFunc \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
@@ -60,7 +61,10 @@ jobs:
 
       - name: Deploy cloud update key function
         id: deploy-update-key-func
-        if: steps.path-filter.outputs.updatefunc == 'true' || steps.path-filter.outputs.lib == 'true' || steps.path-filter.outputs.workflow == 'true'
+        if: |
+          steps.path-filter.outputs.updatefunc == 'true' || 
+          steps.path-filter.outputs.lib == 'true' || 
+          steps.path-filter.outputs.workflow == 'true'
         run: |
           gcloud functions deploy UpdateKeyFunc \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
@@ -70,3 +74,24 @@ jobs:
             --runtime=${{ secrets.RUNTIME }} \
             --update-labels=module=signatures \
             --source=.
+
+      - name: Docker hub login
+        id: docker-hub-login
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_TOKEN}}
+
+      - uses: docker/build-push-action@v2
+        name: Build and push image
+        id: build-and-push
+        if: |
+          steps.path-filter.outputs.createfunc == 'true' ||
+          steps.path-filter.outputs.updatefunc == 'true' || 
+          steps.path-filter.outputs.lib == 'true' || 
+          steps.path-filter.outputs.workflow == 'true'
+        with:
+          context: .
+          push: true
+          tags: ${{secrets.DOCKER_IMAGE_TAG}} 
+
