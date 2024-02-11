@@ -29,7 +29,7 @@ on:
       - "!main"
 
 jobs:
-  unique-job:
+  unit-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -60,6 +60,33 @@ jobs:
       - name: Run unit tests
         id: unit-tests
         run: pnpm run test
+
+  eslint:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v3
+        id: git-clone
+        name: Cloning repository
+
+      - uses: pnpm/action-setup@v2
+        id: install-pnpm
+        name: Installing PNPM
+        with:
+          version: 8
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        id: set-nodejs
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Install dependencies
+        id: set-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Run Eslint
         id: eslint
