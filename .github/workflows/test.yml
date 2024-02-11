@@ -3,7 +3,7 @@ name: CI - Unit Tests
 on:
   push:
     paths:
-        - ".github/workflows/test.yml"
+        - ".github/workflows/**"
         - "functions/**"
     branches:
       - "develop"
@@ -16,7 +16,7 @@ on:
       - "!main"
   pull_request:
     paths:
-        - ".github/workflows/test.yml"
+        - ".github/workflows/**"
         - "functions/**"
     branches:
       - "develop"
