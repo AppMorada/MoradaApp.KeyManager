@@ -3,7 +3,7 @@ export enum FirestoreCustomErrorTag {
 	createEntity = '__create_entity_err__',
 	deleteEntity = '__delete_entity_err__',
 	updateEntity = '__update_entity_err__',
-	getEntity = '__get_entity_err__'
+	getEntity = '__get_entity_err__',
 }
 
 interface IProps {
@@ -17,11 +17,11 @@ export class FirestoreCustomError extends Error {
 	readonly tag: FirestoreCustomErrorTag;
 
 	constructor(input: IProps) {
-		super()
+		super();
 
-		this.name = 'Firestore Custom Error'
-		this.message = input.message
-		this.cause = input.cause
-		this.tag = input.tag
+		this.name = 'Firestore Custom Error';
+		this.message = input.message;
+		this.cause = input.cause;
+		this.tag = input.tag;
 	}
 }
