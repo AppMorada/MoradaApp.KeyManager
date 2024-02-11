@@ -2,9 +2,9 @@ name: CI - Eslint
 
 on: 
   workflow_run:
-    workflows: [CI - Unit Tests]
+    workflows: ["CI - Unit Tests"]
     types: 
-      - requested
+      - completed
 
 jobs:
   lint:
