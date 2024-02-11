@@ -7,19 +7,19 @@ interface IFirestoreContainer {
 	INSTANCE: undefined | Firestore;
 }
 
-export const firestoreServiceId = Symbol.for('__firestore_service__')
+export const firestoreServiceId = Symbol.for('__firestore_service__');
 const FIRESTORE: IFirestoreContainer = {
-	INSTANCE: undefined
-}
+	INSTANCE: undefined,
+};
 
 @injectable()
 export class FirestoreService {
 	private readonly _instance: Firestore;
 
 	constructor() {
-		if(!FIRESTORE.INSTANCE) {
+		if (!FIRESTORE.INSTANCE) {
 			initializeApp({
-				projectId: process.env.GCP_PROJECT
+				projectId: process.env.GCP_PROJECT,
 			});
 
 			FIRESTORE.INSTANCE = admin.firestore();
@@ -28,7 +28,7 @@ export class FirestoreService {
 			});
 		}
 
-		this._instance = FIRESTORE.INSTANCE
+		this._instance = FIRESTORE.INSTANCE;
 	}
 
 	get instance(): Firestore {

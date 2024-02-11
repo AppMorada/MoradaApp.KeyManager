@@ -1,22 +1,9 @@
-name: CI - Unit Tests
+name: CI - Tests & Eslint 
 
 on:
   push:
     paths:
-        - ".github/workflows/test.yml"
-        - "functions/**"
-    branches:
-      - "develop"
-      - "feature/**"
-      - "bugfix/**"
-      - "release/**"
-      - "hotfix/**"
-      - "support/**"
-      - "dependabot/**"
-      - "!main"
-  pull_request:
-    paths:
-        - ".github/workflows/test.yml"
+        - ".github/workflows/**"
         - "functions/**"
     branches:
       - "develop"
@@ -60,3 +47,34 @@ jobs:
       - name: Run unit tests
         id: unit-tests
         run: pnpm run test
+
+  eslint:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v3
+        id: git-clone
+        name: Cloning repository
+
+      - uses: pnpm/action-setup@v2
+        id: install-pnpm
+        name: Installing PNPM
+        with:
+          version: 8
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        id: set-nodejs
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Install dependencies
+        id: set-deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Eslint
+        id: eslint
+        run: pnpm run lint

@@ -1,2 +1,2 @@
-export * from "./factories/key"
-export * from "./inMemoryDBs/key"
+export * from './factories/key';
+export * from './inMemoryDBs/key';
