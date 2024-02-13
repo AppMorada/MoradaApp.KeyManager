@@ -10,7 +10,7 @@ on:
         - "functions/lib/**"
 
 jobs:
-  deploy:
+  gcp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -74,6 +74,27 @@ jobs:
             --runtime=${{ secrets.RUNTIME }} \
             --update-labels=module=signatures \
             --source=.
+
+  dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        id: git-clone
+        name: Cloning repository
+
+      - uses: dorny/paths-filter@v3
+        id: path-filter
+        with:
+          base: ${{ github.ref }}
+          filters: |
+            workflow:
+              - ".github/workflows/deploy-functions.yml"
+            createfunc:
+              - "functions/createKeyFunc/**"
+            updatefunc:
+              - "functions/updateKeyFunc/**"
+            lib:
+              - "functions/lib/**"
 
       - name: Docker hub login
         id: docker-hub-login
