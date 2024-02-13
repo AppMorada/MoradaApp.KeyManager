@@ -22,7 +22,7 @@ export class CreateKeyService {
 			ttl: input.ttl,
 			actual: {
 				content: values,
-				buildedAt: new Date(),
+				buildedAt: Date.now(),
 			},
 		});
 

@@ -15,3 +15,5 @@ export * from './errors/repositories/key';
 export * from './errors/firestore/index';
 
 export * from './filters/index';
+
+export * from './errors/errorListener';

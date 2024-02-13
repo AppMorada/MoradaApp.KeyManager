@@ -13,7 +13,7 @@ describe('InMemoryKey updateAllExpiredKeys method test', () => {
 			keyFactory({
 				actual: {
 					content: 'content',
-					buildedAt: new Date(),
+					buildedAt: Date.now(),
 				},
 				renewTime: undefined,
 				ttl: 0,
@@ -24,7 +24,7 @@ describe('InMemoryKey updateAllExpiredKeys method test', () => {
 				keyFactory({
 					actual: {
 						content: 'content',
-						buildedAt: new Date(),
+						buildedAt: Date.now(),
 					},
 				}),
 			);

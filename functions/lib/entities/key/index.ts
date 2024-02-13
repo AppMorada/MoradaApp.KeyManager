@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 
 interface INode {
 	content: string;
-	buildedAt: Date;
+	buildedAt: number;
 }
 
 export interface IKeyProps {

@@ -1,12 +1,11 @@
 import { FirestoreCustomError } from '@lib';
 import { FirestoreKeyDTO } from './key';
-import { Timestamp } from 'firebase-admin/firestore';
 
 describe('Create Key Func DTO test', () => {
 	it('should be able to validate a create func request body', () => {
 		const body = {
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};
@@ -24,7 +23,7 @@ describe('Create Key Func DTO test', () => {
 		const body1 = {
 			name: 'a',
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};
@@ -32,7 +31,7 @@ describe('Create Key Func DTO test', () => {
 		const body2 = {
 			name: 'a'.repeat(256),
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};
@@ -40,7 +39,7 @@ describe('Create Key Func DTO test', () => {
 		const body3 = {
 			name: undefined,
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};
@@ -54,7 +53,7 @@ describe('Create Key Func DTO test', () => {
 		const body1 = {
 			name: 'na',
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 0,
 		};
@@ -62,7 +61,7 @@ describe('Create Key Func DTO test', () => {
 		const body2 = {
 			name: 'na',
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: undefined,
 		};
@@ -75,7 +74,7 @@ describe('Create Key Func DTO test', () => {
 		const body1 = {
 			name: 'na',
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 0,
 			renewTime: 1,
 		};
@@ -83,7 +82,7 @@ describe('Create Key Func DTO test', () => {
 		const body2 = {
 			name: 'na',
 			actual_Content: 'a'.repeat(200),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: undefined,
 			renewTime: 1,
 		};
@@ -108,7 +107,7 @@ describe('Create Key Func DTO test', () => {
 		const body1 = {
 			name: 'na',
 			actual_Content: undefined,
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};
@@ -116,7 +115,7 @@ describe('Create Key Func DTO test', () => {
 		const body2 = {
 			name: 'na',
 			actual_Content: 'a'.repeat(454),
-			actual_BuildedAt: new Timestamp(0, 0),
+			actual_BuildedAt: Date.now(),
 			ttl: 1,
 			renewTime: 1,
 		};

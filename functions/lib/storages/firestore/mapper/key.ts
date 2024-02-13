@@ -1,12 +1,11 @@
 import { Key } from '@lib';
-import { Timestamp } from 'firebase-admin/firestore';
 
 export interface IToFlatReturn {
 	name: string;
 	prev_Content?: string;
-	prev_BuildedAt?: Timestamp;
+	prev_BuildedAt?: number;
 	actual_Content: string;
-	actual_BuildedAt: Timestamp;
+	actual_BuildedAt: number;
 	ttl: number;
 	renewTime: number;
 }
@@ -17,10 +16,10 @@ export class FirestoreKeyMapper {
 			name: input.name,
 			ttl: input.ttl,
 			actual_Content: input.actual.content,
-			actual_BuildedAt: Timestamp.fromDate(input.actual.buildedAt),
+			actual_BuildedAt: input.actual.buildedAt,
 			prev_Content: input.prev?.content,
 			prev_BuildedAt: input.prev?.buildedAt
-				? Timestamp.fromDate(input.prev.buildedAt)
+				? input.prev.buildedAt
 				: undefined,
 			renewTime: input.renewTime,
 		};
@@ -29,13 +28,13 @@ export class FirestoreKeyMapper {
 	static fromFlatToClass(input: IToFlatReturn) {
 		return new Key({
 			actual: {
-				buildedAt: input.actual_BuildedAt.toDate(),
+				buildedAt: input.actual_BuildedAt,
 				content: input.actual_Content,
 			},
 			prev:
 				input.prev_BuildedAt && input.prev_Content
 					? {
-						buildedAt: input.prev_BuildedAt.toDate(),
+						buildedAt: input.prev_BuildedAt,
 						content: input.prev_Content,
 					}
 					: undefined,
