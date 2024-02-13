@@ -1,3 +1,6 @@
+import { ErrorListener } from '@lib';
+ErrorListener.exec();
+
 import { keyRepoId } from '@lib';
 import { FirestoreService, firestoreServiceId } from '@lib';
 import { FirestoreKeyRepo } from '@lib';

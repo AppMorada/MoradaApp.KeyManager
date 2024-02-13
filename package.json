@@ -5,7 +5,7 @@
     "test": "dotenv -e .env.test jest",
     "firestore": "firebase emulators:start --only firestore",
     "dev": "sh -c \"./tools/parallel.sh\"",
-    "build": "tsc -p . --noEmit && swc ./functions --config-file ./.swcrc.json -d ./dist --delete-dir-on-start",
+    "build": "tsc -p . --noEmit && swc ./functions --config-file ./.swcrc.json -d ./dist",
     "lint": "eslint \"{functions,tests}/**/*.ts\"",
     "functions:createkeyfunc": "sh -c \"./tools/functions.sh CreateKeyFunc 8411\"",
     "functions:deletekeyfunc": "sh -c \"./tools/functions.sh DeleteKeyFunc 8412\"",
@@ -21,25 +21,19 @@
   "watch": {
     "functions:createkeyfunc": {
       "quiet": true,
-      "patterns": [
-        "dist"
-      ],
+      "patterns": ["dist"],
       "delay": 1500,
       "extensions": "js"
     },
     "functions:deletekeyfunc": {
       "quiet": true,
-      "patterns": [
-        "dist"
-      ],
+      "patterns": ["dist"],
       "delay": 1500,
       "extensions": "js"
     },
     "functions:updatekeyfunc": {
       "quiet": true,
-      "patterns": [
-        "dist"
-      ],
+      "patterns": ["dist"],
       "delay": 1500,
       "extensions": "js"
     }

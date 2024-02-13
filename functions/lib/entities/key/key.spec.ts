@@ -9,6 +9,10 @@ describe('Key Entitie Test', () => {
 
 		const anotherKey2 = keyFactory({
 			name: 'another key',
+			actual: {
+				buildedAt: Date.now() - 10000,
+				content: key.actual.content,
+			},
 		});
 		expect(key.equalTo({ key: anotherKey2 })).toBe(false);
 	});

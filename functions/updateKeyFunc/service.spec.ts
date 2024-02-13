@@ -15,7 +15,7 @@ describe('Update Key service test', () => {
 		const key = keyFactory({
 			actual: {
 				content: 'content',
-				buildedAt: new Date(),
+				buildedAt: Date.now(),
 			},
 			renewTime: undefined,
 			ttl: 0,

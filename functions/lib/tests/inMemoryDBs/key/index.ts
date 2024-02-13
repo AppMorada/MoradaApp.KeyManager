@@ -32,7 +32,7 @@ export class InMemoryKey implements KeyRepo {
 			item.prev = { ...item.actual };
 			item.actual = {
 				...item.actual,
-				buildedAt: new Date(),
+				buildedAt: Date.now(),
 			};
 			item.renewTime = Date.now();
 
