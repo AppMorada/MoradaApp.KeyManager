@@ -8,7 +8,7 @@ export function keyFactory(input: TOverride = {}) {
 		ttl: 60 * 60,
 		actual: {
 			content: 'default content',
-			buildedAt: new Date(),
+			buildedAt: Date.now(),
 		},
 		...input,
 	});

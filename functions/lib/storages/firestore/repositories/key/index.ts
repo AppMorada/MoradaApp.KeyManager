@@ -73,7 +73,7 @@ export class FirestoreKeyRepo implements KeyRepo {
 			key.prev = { ...key.actual };
 			key.actual = {
 				content: randomBytes(100).toString('hex'),
-				buildedAt: new Date(),
+				buildedAt: Date.now(),
 			};
 
 			/* eslint-disable @typescript-eslint/no-unused-vars */
