@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^8.56.0
     version: 8.56.0
   firebase-tools:
-    specifier: ^13.1.0
-    version: 13.1.0
+    specifier: ^13.3.0
+    version: 13.3.0
   husky:
     specifier: ^9.0.10
     version: 9.0.10
@@ -2114,6 +2114,7 @@ packages:
   /ansi-regex@6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
+    requiresBuild: true
     dev: true
 
   /ansi-styles@3.2.1:
@@ -4092,8 +4093,8 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-tools@13.1.0:
-    resolution: {integrity: sha512-kY3p3nCv3kjf90AZMhrMu4PT6/otI1kcZGpJJkN9cqBbvj/nNYnnCVy4bXdCVqgCX1+s4G4FwuoW07f9xv/kXw==}
+  /firebase-tools@13.3.0:
+    resolution: {integrity: sha512-WooMk02Wucre63XGHNOopwRp/FFCL/zjq1Jz0itZ6fDeytdTxZabhlcvnX+HMCyccPhuwbs3extIEh/T6SFWtA==}
     engines: {node: '>=18.0.0 || >=20.0.0'}
     hasBin: true
     dependencies:
