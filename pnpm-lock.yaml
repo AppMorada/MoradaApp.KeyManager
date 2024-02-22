@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^8.56.0
     version: 8.56.0
   firebase-tools:
-    specifier: ^13.1.0
-    version: 13.1.0
+    specifier: ^13.3.1
+    version: 13.3.1
   husky:
     specifier: ^9.0.10
     version: 9.0.10
@@ -2114,6 +2114,7 @@ packages:
   /ansi-regex@6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
+    requiresBuild: true
     dev: true
 
   /ansi-styles@3.2.1:
@@ -4092,8 +4093,8 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-tools@13.1.0:
-    resolution: {integrity: sha512-kY3p3nCv3kjf90AZMhrMu4PT6/otI1kcZGpJJkN9cqBbvj/nNYnnCVy4bXdCVqgCX1+s4G4FwuoW07f9xv/kXw==}
+  /firebase-tools@13.3.1:
+    resolution: {integrity: sha512-+yvUK+tcyZhNVqYe7z8U70Jf3l9mGUwcThVVIJCe/dQIjdAv8ZDcibGbhPxTp4Jpw7PyAPRQCo3RgUFnC0RrpA==}
     engines: {node: '>=18.0.0 || >=20.0.0'}
     hasBin: true
     dependencies:
@@ -4119,9 +4120,11 @@ packages:
       filesize: 6.4.0
       form-data: 4.0.0
       fs-extra: 10.1.0
+      fuzzy: 0.1.3
       glob: 7.2.3
       google-auth-library: 7.14.1
       inquirer: 8.2.6
+      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
       js-yaml: 3.14.1
       jsonwebtoken: 9.0.2
       leven: 3.1.0
@@ -4291,6 +4294,11 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /fuzzy@0.1.3:
+    resolution: {integrity: sha512-/gZffu4ykarLrCiP3Ygsa86UAo1E5vEVlvTrpkKywXSbP9Xhln3oSp9QSV57gEq3JFFpGJ4GZ+5zdEp3FcUh4w==}
+    engines: {node: '>= 0.6.0'}
+    dev: true
 
   /gaxios@4.3.3:
     resolution: {integrity: sha512-gSaYYIO1Y3wUtdfHmjDUZ8LWaxJQpiavzbF5Kq53akSzvmVg0RfyOcFDbO1KJ/KCGRFz2qG+lS81F0nkr7cRJA==}
@@ -4988,6 +4996,20 @@ packages:
   /ini@2.0.0:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /inquirer-autocomplete-prompt@2.0.1(inquirer@8.2.6):
+    resolution: {integrity: sha512-jUHrH0btO7j5r8DTQgANf2CBkTZChoVySD8zF/wp5fZCOLIuUbleXhf4ZY5jNBOc1owA3gdfWtfZuppfYBhcUg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      inquirer: ^8.0.0
+    dependencies:
+      ansi-escapes: 4.3.2
+      figures: 3.2.0
+      inquirer: 8.2.6
+      picocolors: 1.0.0
+      run-async: 2.4.1
+      rxjs: 7.8.1
     dev: true
 
   /inquirer@8.2.5:
