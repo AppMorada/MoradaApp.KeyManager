@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^8.56.0
     version: 8.56.0
   firebase-tools:
-    specifier: ^13.1.0
-    version: 13.1.0
+    specifier: ^13.7.0
+    version: 13.7.0
   husky:
     specifier: ^9.0.10
     version: 9.0.10
@@ -3301,6 +3301,13 @@ packages:
         optional: true
     dev: true
 
+  /deep-equal-in-any-order@2.0.6:
+    resolution: {integrity: sha512-RfnWHQzph10YrUjvWwhd15Dne8ciSJcZ3U6OD7owPwiVwsdE5IFSoZGg8rlwJD11ES+9H5y8j3fCofviRHOqLQ==}
+    dependencies:
+      lodash.mapvalues: 4.6.0
+      sort-any: 2.0.0
+    dev: true
+
   /deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
@@ -4092,8 +4099,8 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-tools@13.1.0:
-    resolution: {integrity: sha512-kY3p3nCv3kjf90AZMhrMu4PT6/otI1kcZGpJJkN9cqBbvj/nNYnnCVy4bXdCVqgCX1+s4G4FwuoW07f9xv/kXw==}
+  /firebase-tools@13.7.0:
+    resolution: {integrity: sha512-yXnSLu/dT0wI6BebMAfTTR14SrHmsNppecaYAmuudgZ37FgkmYGnO2eXXpxWW/XA7Hv6ov4hPHFc/d+TDOCHQg==}
     engines: {node: '>=18.0.0 || >=20.0.0'}
     hasBin: true
     dependencies:
@@ -4113,15 +4120,18 @@ packages:
       cross-env: 5.2.1
       cross-spawn: 7.0.3
       csv-parse: 5.5.3
+      deep-equal-in-any-order: 2.0.6
       exegesis: 4.1.1
       exegesis-express: 4.0.0
       express: 4.18.2
       filesize: 6.4.0
       form-data: 4.0.0
       fs-extra: 10.1.0
+      fuzzy: 0.1.3
       glob: 7.2.3
       google-auth-library: 7.14.1
       inquirer: 8.2.6
+      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
       js-yaml: 3.14.1
       jsonwebtoken: 9.0.2
       leven: 3.1.0
@@ -4291,6 +4301,11 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /fuzzy@0.1.3:
+    resolution: {integrity: sha512-/gZffu4ykarLrCiP3Ygsa86UAo1E5vEVlvTrpkKywXSbP9Xhln3oSp9QSV57gEq3JFFpGJ4GZ+5zdEp3FcUh4w==}
+    engines: {node: '>= 0.6.0'}
+    dev: true
 
   /gaxios@4.3.3:
     resolution: {integrity: sha512-gSaYYIO1Y3wUtdfHmjDUZ8LWaxJQpiavzbF5Kq53akSzvmVg0RfyOcFDbO1KJ/KCGRFz2qG+lS81F0nkr7cRJA==}
@@ -4988,6 +5003,20 @@ packages:
   /ini@2.0.0:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /inquirer-autocomplete-prompt@2.0.1(inquirer@8.2.6):
+    resolution: {integrity: sha512-jUHrH0btO7j5r8DTQgANf2CBkTZChoVySD8zF/wp5fZCOLIuUbleXhf4ZY5jNBOc1owA3gdfWtfZuppfYBhcUg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      inquirer: ^8.0.0
+    dependencies:
+      ansi-escapes: 4.3.2
+      figures: 3.2.0
+      inquirer: 8.2.6
+      picocolors: 1.0.0
+      run-async: 2.4.1
+      rxjs: 7.8.1
     dev: true
 
   /inquirer@8.2.5:
@@ -6139,6 +6168,10 @@ packages:
 
   /lodash.map@4.6.0:
     resolution: {integrity: sha512-worNHGKLDetmcEYDvh2stPCrrQRkP20E4l0iIS7F8EvzMqBBi7ltvFN5m1HvTf1P7Jk1txKhvFcmYsCr8O2F1Q==}
+    dev: true
+
+  /lodash.mapvalues@4.6.0:
+    resolution: {integrity: sha512-JPFqXFeZQ7BfS00H58kClY7SPVeHertPE0lNuCyZ26/XlN8TvakYD7b9bGyNmXbT/D3BbtPAAmq90gPWqLkxlQ==}
     dev: true
 
   /lodash.memoize@4.1.2:
@@ -7889,6 +7922,12 @@ packages:
     dependencies:
       ip: 2.0.0
       smart-buffer: 4.2.0
+    dev: true
+
+  /sort-any@2.0.0:
+    resolution: {integrity: sha512-T9JoiDewQEmWcnmPn/s9h/PH9t3d/LSWi0RgVmXSuDYeZXTZOZ1/wrK2PHaptuR1VXe3clLLt0pD6sgVOwjNEA==}
+    dependencies:
+      lodash: 4.17.21
     dev: true
 
   /sort-keys-length@1.0.1:
