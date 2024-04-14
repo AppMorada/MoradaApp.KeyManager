@@ -4,6 +4,9 @@ LABEL maintainer="Nícolas Basilio"
 RUN mkdir -p /usr/node/app
 WORKDIR /usr/node/app
 
+RUN apk add --no-cache npm=10.2.5-r0 nodejs=20.12.1-r0 && \
+        rm -rf /var/cache/apk/*
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
@@ -38,6 +41,6 @@ COPY ./tools/ ./tools
 
 VOLUME ["/usr/node/app/node_modules"]
 
-ENV FUNC_CMD="npm run functions:createkeyfunc"
+ENV FUNC_CMD="functions:createkeyfunc"
 
-CMD [ "${FUNC_CMD}}" ]
+CMD [ "npm", "run", "${FUNC_CMD}" ]

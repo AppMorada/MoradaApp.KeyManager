@@ -7,6 +7,7 @@ on:
       - "main"
     paths:
         - ".github/workflows/deploy-docker-images.yml"
+        - "dockerfile"
         - "functions/createKeyFunc/**"
         - "functions/updateKeyFunc/**"
         - "functions/lib/**"
@@ -25,11 +26,13 @@ jobs:
           base: ${{ github.ref }}
           filters: |
             workflow:
-              - ".github/workflows/deploy-functions.yml"
+              - ".github/workflows/deploy-docker-images.yml"
             createfunc:
               - "functions/createKeyFunc/**"
             updatefunc:
               - "functions/updateKeyFunc/**"
+            docker:
+              - "dockerfile"
             lib:
               - "functions/lib/**"
 
@@ -44,6 +47,7 @@ jobs:
         name: Build and push image
         id: build-and-push
         if: |
+          steps.path-filter.outputs.docker == 'true' ||
           steps.path-filter.outputs.createfunc == 'true' ||
           steps.path-filter.outputs.updatefunc == 'true' || 
           steps.path-filter.outputs.lib == 'true' || 
