@@ -1,22 +1,26 @@
-FROM node:latest AS base
+FROM alpine:3.19.1 AS base
+LABEL maintainer="Nícolas Basilio"
 
 RUN mkdir -p /usr/node/app
 WORKDIR /usr/node/app
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
 
 COPY functions ./functions
 COPY package.json .
 COPY pnpm-lock.yaml .
 
+#---------- mid stage ------------
+FROM base AS mid_stage
+RUN npm install -g pnpm@8.15.5
+
 #---------- prod deps ------------
-FROM base AS prod_deps
+FROM mid_stage AS prod_deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 #--------- build stage -----------
-FROM base AS builder
+FROM mid_stage AS builder
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
@@ -34,6 +38,6 @@ COPY ./tools/ ./tools
 
 VOLUME ["/usr/node/app/node_modules"]
 
-ENV func_cmd="functions:createkeyfunc"
+ENV FUNC_CMD="npm run functions:createkeyfunc"
 
-CMD [ "${func_cmd}}" ]
+CMD [ "${FUNC_CMD}}" ]
