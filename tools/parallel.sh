@@ -30,9 +30,9 @@ fi
 BUILD_CMD="sh -c ./tools/build_watch.sh"
 FIRESTORE_CMD="sh -c ./tools/firestore.sh"
 
-CREATE_KEY_FN_CMD="npm-watch functions:createkeyfunc"
-UPDATE_KEY_FN_CMD="npm-watch functions:updatekeyfunc"
-DELETE_KEY_FN_CMD="npm-watch functions:deletekeyfunc"
+CREATE_KEY_FN_CMD="npm-watch functions:createkeyfnc"
+UPDATE_KEY_FN_CMD="npm-watch functions:updatekeyfnc"
+DELETE_KEY_FN_CMD="npm-watch functions:deletekeyfnc"
 
 pnpm dotenv -e .env -- \
     concurrently \

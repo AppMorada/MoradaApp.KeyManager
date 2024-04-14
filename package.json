@@ -7,31 +7,32 @@
     "dev": "sh -c \"./tools/parallel.sh\"",
     "build": "tsc -p . --noEmit && swc ./functions --config-file ./.swcrc.json -d ./dist",
     "lint": "eslint \"{functions,tests}/**/*.ts\"",
-    "functions:createkeyfunc": "sh -c \"./tools/functions.sh CreateKeyFunc 8411\"",
-    "functions:deletekeyfunc": "sh -c \"./tools/functions.sh DeleteKeyFunc 8412\"",
-    "functions:updatekeyfunc": "sh -c \"./tools/functions.sh UpdateKeyFunc 8413\"",
+    "functions:createkeyfnc": "sh -c \"./tools/functions.sh createKeyFnc 8411\"",
+    "functions:deletekeyfnc": "sh -c \"./tools/functions.sh deleteKeyFnc 8412\"",
+    "functions:updatekeyfnc": "sh -c \"./tools/functions.sh updateKeyFnc 8413\"",
     "lint:fix": "eslint --fix",
     "lint:fix:global": "eslint --fix \"{functions,tests}/**/*.ts\"",
     "format": "prettier --write",
-    "set-hooks": "husky install",
-    "pre-commit": "lint-staged --allow-empty"
+    "set-hooks": "husky",
+    "pre-commit": "lint-staged --allow-empty",
+    "commit": "cz"
   },
   "author": "",
   "license": "ISC",
   "watch": {
-    "functions:createkeyfunc": {
+    "functions:createkeyfnc": {
       "quiet": true,
       "patterns": ["dist"],
       "delay": 1500,
       "extensions": "js"
     },
-    "functions:deletekeyfunc": {
+    "functions:deletekeyfnc": {
       "quiet": true,
       "patterns": ["dist"],
       "delay": 1500,
       "extensions": "js"
     },
-    "functions:updatekeyfunc": {
+    "functions:updatekeyfnc": {
       "quiet": true,
       "patterns": ["dist"],
       "delay": 1500,
