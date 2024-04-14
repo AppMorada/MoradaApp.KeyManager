@@ -6,14 +6,8 @@ on:
         - ".github/workflows/**"
         - "functions/**"
     branches:
-      - "develop"
-      - "feature/**"
-      - "bugfix/**"
-      - "release/**"
-      - "hotfix/**"
-      - "support/**"
-      - "dependabot/**"
-      - "!main"
+      - '**'
+      - '!main'
 
 jobs:
   unit-test:
