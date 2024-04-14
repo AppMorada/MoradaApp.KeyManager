@@ -34,6 +34,6 @@ COPY ./tools/ ./tools
 
 VOLUME ["/usr/node/app/node_modules"]
 
-ENV func_cmd="functions:createkeyfunc"
+ENV FUNC_CMD="functions:createkeyfunc"
 
-CMD [ "${func_cmd}}" ]
+CMD [ "${FUNC_CMD}}" ]
