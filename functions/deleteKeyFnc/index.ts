@@ -2,11 +2,11 @@ import 'reflect-metadata';
 
 import { randomUUID } from 'node:crypto';
 import { Request, Response } from '@google-cloud/functions-framework';
-import { UpdateKeyApp } from './app';
+import { DeleteKeyApp } from './app';
 import { Filters } from '@lib';
 
-export const UpdateKeyFunc = async (req: Request, res: Response) => {
-	const app = new UpdateKeyApp(req, res);
+export const deleteKeyFnc = async (req: Request, res: Response) => {
+	const app = new DeleteKeyApp(req, res);
 
 	const logger = app.deps.logger;
 	const sessionId = randomUUID();

@@ -1,3 +1,3 @@
-export { CreateKeyFunc } from './createKeyFunc';
-export { DeleteKeyFunc } from './deleteKeyFunc';
-export { UpdateKeyFunc } from './updateKeyFunc';
+export { createKeyFnc } from './createKeyFnc';
+export { deleteKeyFnc } from './deleteKeyFnc';
+export { updateKeyFnc } from './updateKeyFnc';

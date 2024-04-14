@@ -50,7 +50,7 @@ jobs:
           steps.path-filter.outputs.lib == 'true' || 
           steps.path-filter.outputs.workflow == 'true'
         run: |
-          gcloud functions deploy CreateKeyFunc \
+          gcloud functions deploy ${{ secrets.CREATE_KEY_FNC_NAME }} \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
             --no-allow-unauthenticated \
             --region=${{ secrets.REGION }} \
@@ -66,7 +66,7 @@ jobs:
           steps.path-filter.outputs.lib == 'true' || 
           steps.path-filter.outputs.workflow == 'true'
         run: |
-          gcloud functions deploy UpdateKeyFunc \
+          gcloud functions deploy ${{ secrets.UPDATE_KEY_FNC_NAME }} \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
             --no-allow-unauthenticated \
             --region=${{ secrets.REGION }} \

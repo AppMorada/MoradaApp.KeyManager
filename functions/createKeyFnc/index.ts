@@ -5,7 +5,7 @@ import { Request, Response } from '@google-cloud/functions-framework';
 import { CreateKeyApp } from './app';
 import { Filters } from '@lib';
 
-export const CreateKeyFunc = async (req: Request, res: Response) => {
+export const createKeyFnc = async (req: Request, res: Response) => {
 	const app = new CreateKeyApp(req, res);
 
 	const logger = app.deps.logger;
