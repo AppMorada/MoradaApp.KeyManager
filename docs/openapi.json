@@ -1,0 +1,276 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MoradaApp KeyManager - OpenAPI 3.0",
+    "description": "Documentação dedicada as operações das chaves de assinatura usadas no algoritmo de autenticação e autorização no MoradaApp, você pode ler mais sobre este algoritmo [aqui](https://github.com/AppMorada/MoradaApp.auth-gateway?tab=readme-ov-file#algoritmo-de-autentica%C3%A7%C3%A3o-usado).\n\nAo utilizar sistema, não se esqueça de substituir a url para as respectivas functions.",
+    "version": "0.0.0"
+  },
+  "externalDocs": {
+    "description": "Entenda mais sobre o Swagger",
+    "url": "http://swagger.io"
+  },
+  "paths": {
+    "/{key_name}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key_name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "nome da chave"
+          }
+        ],
+        "tags": [
+          "Manipular chaves"
+        ],
+        "responses": {
+          "204": {
+            "description": "Caminho feliz. A chave é deletada com sucesso"
+          },
+          "400": {
+            "description": "Dispara caso o usuário entregue um body incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteKeyBadRequest"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Dispara caso o metodo http esteja incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/methodNotAllowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "patch": {
+        "summary": "Rotaciona as versões das chaves",
+        "description": "Dispara a rotação das versões das chaves armazenadas no sistema",
+        "tags": [
+          "Manipular chaves"
+        ],
+        "responses": {
+          "200": {
+            "description": "Caminho feliz. As rotação das versões foram geradas corretamente"
+          },
+          "405": {
+            "description": "Dispara caso o metodo http esteja incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/methodNotAllowed"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Registra uma chave de assinatura no sistema",
+        "description": "Registry uma chave de assinatura no sistema",
+        "tags": [
+          "Manipular chaves"
+        ],
+        "requestBody": {
+          "content": {
+            "applcation/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createKeyRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Caminho feliz. A chave é criada com sucesso"
+          },
+          "400": {
+            "description": "Dispara caso o usuário entregue um body incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createKeyBadRequest"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Dispara caso o metodo http esteja incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/methodNotAllowed"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Dispara caso o metodo http esteja incorreto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/conflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "methodNotAllowed": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Method Not Allowed"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Status da requisição",
+            "example": 405
+          },
+          "message": {
+            "type": "string",
+            "example": "Only <METHOD> method are allowed"
+          }
+        }
+      },
+      "conflict": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Bad Request"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Status da requisição",
+            "example": 409
+          },
+          "message": {
+            "type": "string",
+            "description": "Entity already exist"
+          }
+        }
+      },
+      "createKeyRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da chave"
+          },
+          "ttl": {
+            "type": "string",
+            "description": "Tempo de rotação para cada versão da chave"
+          }
+        }
+      },
+      "createKeyBadRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Bad Request"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Status da requisição",
+            "example": 400
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Código do erro em string"
+                },
+                "expected": {
+                  "type": "string",
+                  "description": "O que era esperado"
+                },
+                "received": {
+                  "type": "string",
+                  "description": "O que foi recebido"
+                },
+                "path": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "deleteKeyBadRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Bad Request"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Status da requisição",
+            "example": 400
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Código do erro em string"
+                },
+                "minimum": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "integer"
+                },
+                "inclusive": {
+                  "type": "string"
+                },
+                "exact": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

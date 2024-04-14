@@ -41,6 +41,3 @@ COPY ./tools/ ./tools
 
 VOLUME ["/usr/node/app/node_modules"]
 
-ENV FUNC_CMD="functions:createkeyfunc"
-
-CMD [ "npm", "run", "${FUNC_CMD}" ]

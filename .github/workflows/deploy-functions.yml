@@ -8,7 +8,8 @@ on:
         - "functions/createKeyFunc/**"
         - "functions/updateKeyFunc/**"
         - "functions/lib/**"
-
+        - "package.json"
+        - "pnpm-lock.yaml"
 jobs:
   gcp:
     runs-on: ubuntu-latest

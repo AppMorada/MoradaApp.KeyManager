@@ -16,9 +16,9 @@ export class FirestoreCustomErrorFilter implements ErrorFilter {
 	private readonly filterMsg = [
 		{
 			match: 'ALREADY_EXISTS',
-			httpCode: 401,
-			message: 'You don\'t have permission to access this route',
-			name: 'Unauthorized',
+			httpCode: 409,
+			message: 'Entity already exist',
+			name: 'Bad Request',
 		},
 		{
 			match: FirestoreCustomErrorTag.malformedEntity,

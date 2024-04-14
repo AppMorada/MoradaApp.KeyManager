@@ -11,7 +11,8 @@ on:
         - "functions/createKeyFunc/**"
         - "functions/updateKeyFunc/**"
         - "functions/lib/**"
-
+        - "package.json"
+        - "pnpm-lock.yaml"
 jobs:
   dockerhub:
     runs-on: ubuntu-latest
