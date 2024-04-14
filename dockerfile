@@ -33,3 +33,7 @@ COPY --from=builder /usr/node/app/dist ./dist
 COPY ./tools/ ./tools
 
 VOLUME ["/usr/node/app/node_modules"]
+
+ENV func_cmd="functions:createkeyfunc"
+
+CMD [ "${func_cmd}}" ]
