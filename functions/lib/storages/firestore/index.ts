@@ -25,6 +25,7 @@ export class FirestoreService {
 			FIRESTORE.INSTANCE = admin.firestore();
 			FIRESTORE.INSTANCE.settings({
 				ignoreUndefinedProperties: true,
+				databaseId: process.env.FIRESTORE_DATABASE_ID,
 			});
 		}
 
